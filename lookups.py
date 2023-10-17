@@ -20,7 +20,7 @@ class ErrorHandling(Enum):
     ERROR_DICT = "Error in clenaning all dataframes and create a dict"
     PREHOOK_SQL_ERROR = "Prehook error"
     ERROR_CREATING_STAGING_TABLE = "Error creating staging table"
-
+    HOOK_SQL_ERROR = "Error in executing the SQL commands of the hook (error in the hook step)"
 
 class InputTypes(Enum):
     CSV = "csv"
@@ -41,4 +41,27 @@ class SQLCommandsPath(Enum):
     SQL_FOLDER = "./SQL_Commands/"
     
 class PreHookSteps(Enum):
-    EXECUTE_SQL_QUERY = "Execute SQL folder prehook"
+    EXECUTE_SQL_QUERY = "execute_sql_folder_prehook"
+    CREATE_TABLE_IDX = "create_sql_stg_table_idx"
+class HookSteps(Enum):
+    CREATE_ETL_CHECKPOINT = "Create_etl_checkpoint"
+    EXECUTE_SQL_QUERY = "Execute_sql_folder_hook"
+    INSERT_UPDATE_ETL_CHECKPOINT = "Insert_or_update_etl_checkpoint"
+    RETURN_LAST_ETL_RUN = "Return_etl_last_updated_date"
+    INSERT_INTO_STG_TABLE = "Insert_into_stg_tables"
+
+class ETL_Checkpoint(Enum):
+    TABLE = "etl_checkpoint"
+    COLUMN_1 = "etl_last_run"
+    COLUMN_2 = "etl_last_id"
+    ETL_DEFAULT_DATE = "1900-01-01 00:00:00"
+    ETL_DEFAULT_ID = "-1"
+
+class DataDate(Enum):
+    DATE = 'date'
+
+class StagingTablesNamesWithDate(Enum):
+    checkin = "stg_checkin"
+    user = "stg_user"
+    elite_user = "stg_elite_user"
+    review = "stg_review"
