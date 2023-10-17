@@ -52,7 +52,7 @@ def cleaned_checkin_dataframe():
         df_checkin = df_checkin.assign(splited_date=df_checkin['date'].str.split(', ')).explode('splited_date')
         # Extract the 'business_id' and 'splited_date' columns
         df_checkin = df_checkin[['business_id', 'splited_date']]
-
+        df_checkin.rename(columns={'splited_date': 'date'}, inplace=True)
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_CHECKIN_CLEANING.value, str(e))
     finally:
@@ -66,7 +66,7 @@ def cleaned_user_dataframe():
         df_user = df_user.drop('friends', axis=1)
         # Replace 'elite' column with the number of elite years or 0 for NaN values
         df_user['elite'] = df_user['elite'].apply(lambda x: len(str(x).split(',')) if not pd.isna(x) else 0)
-
+        df_user.rename(columns={'yelping_since': 'date'}, inplace=True)
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_USER_CLEANING.value, str(e))
     finally:
@@ -83,6 +83,7 @@ def cleaned_elite_user_dataframe():
         df_elite_years.columns = ['user_id', 'elite_year', 'yelping_since']
         df_elite_user = df_elite_years
         df_elite_user['elite_year'] = df_elite_user['elite_year'].replace("20", "2020")
+        df_elite_user.rename(columns={'yelping_since': 'date'}, inplace=True)
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_ELITE_user_CLEANING.value, str(e))
     finally:
@@ -97,7 +98,9 @@ def cleaned_dataframes_dict():
         dataframes_dict['checkin'] = cleaned_checkin_dataframe()
         dataframes_dict['user'] = cleaned_user_dataframe()
         dataframes_dict['elite_user'] = cleaned_elite_user_dataframe()
+        dataframes_dict['review'] =  read_data_as_dataframe(InputTypes.CSV, SourceFiles.REVIEW.value)
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_DICT.value, str(e))
     finally:
         return dataframes_dict
+
