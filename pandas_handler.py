@@ -4,6 +4,17 @@ from db_handler import read_data_as_dataframe
 import pandas as pd
 import numpy as np
 
+# Define the assign_numeric_id function
+numeric_id_counter = 0
+business_id_to_numeric_id = {}
+
+def assign_numeric_id(business_id):
+    global numeric_id_counter
+    if business_id not in business_id_to_numeric_id:
+        numeric_id_counter += 1
+        business_id_to_numeric_id[business_id] = numeric_id_counter
+    return business_id_to_numeric_id[business_id]
+
 def cleaned_business_dataframe():
     df_business = None
     try:
@@ -14,6 +25,7 @@ def cleaned_business_dataframe():
         df_business = df_business.explode('categories', ignore_index=True)
         df_business['categorie_id'] = pd.factorize(df_business['categories'])[0] + 1
         df_business = df_business.drop(["attributes", "hours"], axis=1)
+        df_business['numeric_id'] = df_business['business_id'].apply(assign_numeric_id)
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_BUSINESS_CLEANING.value, str(e))
     finally:
@@ -38,6 +50,7 @@ def cleaned_attributes_dataframe():
         df_business = df_business.drop(columns=['attributes'])
         df_business = df_business.reset_index(drop=True)
         df_business['attributes_id'] = pd.factorize(df_business['filtered_attributes'])[0] + 1
+        df_business['numeric_id'] = df_business['business_id'].apply(assign_numeric_id)
 
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_ATTRIBUTES_CLEANING.value, str(e))
