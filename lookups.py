@@ -52,16 +52,21 @@ class HookSteps(Enum):
 
 class ETL_Checkpoint(Enum):
     TABLE = "etl_checkpoint"
-    COLUMN_1 = "etl_last_run"
-    COLUMN_2 = "etl_last_id"
+    FISRT_COLUMN = "etl_last_run"
+    SECOND_COLUMN = "etl_last_id"
     ETL_DEFAULT_DATE = "1900-01-01 00:00:00"
-    ETL_DEFAULT_ID = "-1"
+    ETL_DEFAULT_ID = -1
 
 class DataDate(Enum):
     DATE = 'date'
+    ID = "numeric_id"
 
 class StagingTablesNamesWithDate(Enum):
     checkin = "stg_checkin"
     user = "stg_user"
     elite_user = "stg_elite_user"
     review = "stg_review"
+
+class StagingTablesNamesWithID(Enum):
+    business = "stg_business"
+    attributes = "stg_attributes"
