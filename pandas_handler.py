@@ -21,10 +21,41 @@ def cleaned_business_dataframe():
         df_business = read_data_as_dataframe(InputTypes.CSV, SourceFiles.BUSINESS.value)
         df_business['address'].fillna("No address available", inplace=True)
         df_business['postal_code'].fillna("No postal code available", inplace=True)
+        df_business = df_business.drop(["attributes", "hours","categories"], axis=1)
+        df_business['numeric_id'] = df_business['business_id'].apply(assign_numeric_id)
+    except Exception as e:
+        show_error_message(ErrorHandling.ERROR_BUSINESS_CLEANING.value, str(e))
+    finally:
+        return df_business
+
+def cleaned_business_categories_dataframe():
+    df_business = None
+    try:
+        df_business = read_data_as_dataframe(InputTypes.CSV, SourceFiles.BUSINESS.value)
+        df_business['address'].fillna("No address available", inplace=True)
+        df_business['postal_code'].fillna("No postal code available", inplace=True)
         df_business['categories'] = df_business['categories'].str.split(', ')
         df_business = df_business.explode('categories', ignore_index=True)
         df_business['categorie_id'] = pd.factorize(df_business['categories'])[0] + 1
         df_business = df_business.drop(["attributes", "hours"], axis=1)
+        category_list = [
+                        "Restaurants", "Nightlife", "Bars", "Food", "Cafes", "Fast Food", "Italian",
+                        "British", "Coffee & Tea", "Indian", "Pizza", "Breakfast & Brunch", "Chinese",
+                        "Sandwiches", "Japanese", "Burgers", "Pubs", "Mediterranean", "Thai",
+                        "Cocktail Bars", "French", "Wine Bars", "Fish & Chips", "Pakistani", "Middle Eastern",
+                        "Modern European", "Turkish", "Sushi Bars", "Delis", "American (Traditional)", "Seafood",
+                        "Asian Fusion", "Steakhouses", "Gastropubs", "Mexican", "Vietnamese", "Event Planning & Services",
+                        "Chicken Shop", "Spanish", "Bakeries", "Caribbean", "Vegetarian", "Greek", "Salad",
+                        "Vegan", "Halal", "Arts & Entertainment", "Chicken Wings", "Food Stands", "Tapas Bars",
+                        "Juice Bars & Smoothies", "Venues & Event Spaces", "American (New)", "Lebanese",
+                        "Barbeque", "Tapas/Small Plates", "Korean", "African", "Brasseries", "Specialty Food",
+                        "Diners", "Desserts", "Persian/Iranian", "Delicatessen", "Lounges", "Dim Sum", "Latin American",
+                        "Bistros", "Food Delivery Services", "Street Vendors", "Malaysian", "Portuguese", "Gluten-Free",
+                        "Brazilian", "Shopping", "Kebab", "Noodles", "Creperies", "Bangladeshi", "Music Venues",
+                        "Patisserie/Cake Shop", "Argentine", "Falafel", "Ramen"
+                        ]
+        df_business = df_business[df_business['categories'].isin(category_list)]
+
         df_business['numeric_id'] = df_business['business_id'].apply(assign_numeric_id)
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_BUSINESS_CLEANING.value, str(e))
@@ -97,6 +128,7 @@ def cleaned_elite_user_dataframe():
         df_elite_user = df_elite_years
         df_elite_user['elite_year'] = df_elite_user['elite_year'].replace("20", "2020")
         df_elite_user.rename(columns={'yelping_since': 'date'}, inplace=True)
+        df_elite_user['elite_year_id'] = pd.factorize(df_elite_user['elite_year'])[0] + 1
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_ELITE_user_CLEANING.value, str(e))
     finally:
@@ -108,10 +140,15 @@ def cleaned_dataframes_dict():
         # Clean and store each DataFrame in the dictionary
         dataframes_dict['business'] = cleaned_business_dataframe()
         dataframes_dict['attributes'] = cleaned_attributes_dataframe()
+        dataframes_dict['categories'] = cleaned_business_categories_dataframe() 
         dataframes_dict['checkin'] = cleaned_checkin_dataframe()
+        dataframes_dict['checkin']['date'] = pd.to_datetime(dataframes_dict['checkin']['date'], format='%Y-%m-%d %H:%M:%S')
         dataframes_dict['user'] = cleaned_user_dataframe()
+        dataframes_dict['user']['date'] = pd.to_datetime(dataframes_dict['user']['date'], format='%Y-%m-%d %H:%M:%S')
         dataframes_dict['elite_user'] = cleaned_elite_user_dataframe()
+        dataframes_dict['elite_user']['date'] = pd.to_datetime(dataframes_dict['elite_user']['date'], format='%Y-%m-%d %H:%M:%S')
         dataframes_dict['review'] =  read_data_as_dataframe(InputTypes.CSV, SourceFiles.REVIEW.value)
+        dataframes_dict['review']['date'] = pd.to_datetime(dataframes_dict['review']['date'], format='%Y-%m-%d %H:%M:%S')
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_DICT.value, str(e))
     finally:
