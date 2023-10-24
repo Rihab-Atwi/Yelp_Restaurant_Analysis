@@ -74,8 +74,7 @@ FROM target_schema.stg_categories as src_table
 ON CONFLICT (category_id)
 DO UPDATE SET 
     category = EXCLUDED.category; 
-
--- Elite YEAR dimension table
+/* Elite YEAR dimension table */
 CREATE TABLE IF NOT EXISTS target_schema.dim_elite_year
 (
 	elite_year_id INTEGER PRIMARY KEY NOT NULL,
@@ -91,7 +90,7 @@ ON CONFLICT (elite_year_id)
 DO UPDATE SET 
     elite_year = EXCLUDED.elite_year; 
 
--- Checkin dimension table
+/* Checkin dimension table */
 CREATE TABLE IF NOT EXISTS target_schema.dim_checkin
 (
     business_id TEXT,
@@ -103,9 +102,9 @@ SELECT DISTINCT
     src_table.business_id, 
     src_table.date
 FROM target_schema.stg_checkin as src_table;
--- ON CONFLICT (business_id, checkin_time) 
--- DO UPDATE SET 
---     checkin_time = EXCLUDED.checkin_time;
+ON CONFLICT (business_id, checkin_time) 
+DO UPDATE SET 
+    checkin_time = EXCLUDED.checkin_time;
 
 /* Business dimension table */
 CREATE TABLE IF NOT EXISTS target_schema.dim_user
@@ -188,3 +187,66 @@ DO UPDATE SET
     compliment_photos = EXCLUDED.compliment_photos,
     nb_friends = EXCLUDED.nb_friends;
 
+/* dim_Restaurant_dish_top_10 */
+CREATE TABLE IF NOT EXISTS target_schema.dim_restaurant_dish_top_10
+(
+    business_id TEXT,
+    restaurant_name TEXT,
+    dish_id INT PRIMARY KEY NOT NULL,
+    dish_name TEXT,
+    dish_price TEXT,
+    price_range INT,
+    review_count INT
+
+);
+CREATE INDEX IF NOT EXISTS "idx_dish_id" ON target_schema.dim_restaurant_dish_top_10(dish_id);
+INSERT INTO target_schema.dim_restaurant_dish_top_10 ( business_id, restaurant_name, dish_id, dish_name, dish_price, price_range, review_count)
+SELECT DISTINCT 
+    src_table.business_id as business_id, 
+    src_table.restaurant_name,
+    src_table.dish_id,
+    src_table.dish_name,
+    src_table.dish_price,
+    src_table.price_range,
+    src_table.review_count
+FROM target_schema.stg_top_10_resto AS src_table
+ON CONFLICT(dish_id)
+DO UPDATE SET
+    business_id = EXCLUDED.business_id, 
+    restaurant_name = EXCLUDED.restaurant_name,  
+    dish_name = EXCLUDED.dish_name,
+    dish_price = EXCLUDED.dish_price,
+    price_range = EXCLUDED.price_range,
+    review_count = EXCLUDED.review_count;
+
+/* dim_restaurant_dish_bottom_10 */
+CREATE TABLE IF NOT EXISTS target_schema.dim_restaurant_dish_bottom_10
+(
+    business_id TEXT,
+    restaurant_name TEXT,
+    dish_id INT PRIMARY KEY NOT NULL,
+    dish_name TEXT,
+    dish_price TEXT,
+    price_range INT,
+    review_count INT
+
+);
+CREATE INDEX IF NOT EXISTS "idx_dish_id" ON target_schema.dim_restaurant_dish_bottom_10(dish_id);
+INSERT INTO target_schema.dim_restaurant_dish_bottom_10 ( business_id, restaurant_name, dish_id, dish_name, dish_price, price_range, review_count)
+SELECT DISTINCT 
+    src_table.business_id as business_id, 
+    src_table.restaurant_name,
+    src_table.dish_id,
+    src_table.dish_name,
+    src_table.dish_price,
+    src_table.price_range,
+    src_table.review_count
+FROM target_schema.stg_bottom_10_resto AS src_table
+ON CONFLICT(dish_id)
+DO UPDATE SET  
+    business_id = EXCLUDED.business_id,
+    restaurant_name = EXCLUDED.restaurant_name,  
+    dish_name = EXCLUDED.dish_name,
+    dish_price = EXCLUDED.dish_price,
+    price_range = EXCLUDED.price_range,
+    review_count = EXCLUDED.review_count;
