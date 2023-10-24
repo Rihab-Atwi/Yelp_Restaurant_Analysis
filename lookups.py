@@ -21,6 +21,9 @@ class ErrorHandling(Enum):
     PREHOOK_SQL_ERROR = "Prehook error"
     ERROR_CREATING_STAGING_TABLE = "Error creating staging table"
     HOOK_SQL_ERROR = "Error in executing the SQL commands of the hook (error in the hook step)"
+    ERROR_IN_SENTIMENT_ANALYSIS = "Error in reviews sentiment analysis"
+    ERROR_TOP_10_CLEANNING =  "Error in cleaning top 10 resto dataframe"
+    ERRO_BOTTOM_10_CLEANNING = "Error in cleaning bottom 10 resto dataframe"
 
 class InputTypes(Enum):
     CSV = "csv"
@@ -33,6 +36,8 @@ class SourceFiles(Enum):
     CHECKIN = "./CSV_files/checkin.csv"
     REVIEW = "./CSV_files/review.csv"
     USER = "./CSV_files/user.csv"
+    Top10Business = "./CSV_files/Top_10_resto.csv"
+    Bottom10Business = "./CSV_files/Bottom_10_resto.csv"
 
 class DestinationSchemaName(Enum):
     Datawarehouse = "dw_reporting"
@@ -71,3 +76,5 @@ class StagingTablesNamesWithID(Enum):
     business = "stg_business"
     attributes = "stg_attributes"
     categories = "stg_categories"
+    top_10_resto = "stg_top_10_resto"
+    bottom_10_resto = "stg_bottom_10_resto"
