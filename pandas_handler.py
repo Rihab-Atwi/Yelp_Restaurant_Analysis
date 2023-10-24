@@ -3,6 +3,7 @@ from logging_handler import show_error_message
 from db_handler import read_data_as_dataframe 
 import pandas as pd
 import numpy as np
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # Define the assign_numeric_id function
 numeric_id_counter = 0
@@ -53,7 +54,7 @@ def cleaned_business_categories_dataframe():
                         "Bistros", "Food Delivery Services", "Street Vendors", "Malaysian", "Portuguese", "Gluten-Free",
                         "Brazilian", "Shopping", "Kebab", "Noodles", "Creperies", "Bangladeshi", "Music Venues",
                         "Patisserie/Cake Shop", "Argentine", "Falafel", "Ramen"
-                        ]
+                        ] #got it from yelp website
         df_business = df_business[df_business['categories'].isin(category_list)]
 
         df_business['numeric_id'] = df_business['business_id'].apply(assign_numeric_id)
@@ -134,6 +135,52 @@ def cleaned_elite_user_dataframe():
     finally:
         return df_elite_user
     
+def cleaned_top_10_resto():
+        df_top_10_resto = None
+        try:
+            df_top_10_resto= read_data_as_dataframe(InputTypes.CSV, SourceFiles.Top10Business.value)
+            df_top_10_resto['numeric_id'] = df_top_10_resto['business_id'].apply(assign_numeric_id)
+        except Exception as e:
+            show_error_message(ErrorHandling.ERROR_TOP_10_CLEANNING.value, str(e))
+        finally:
+            return df_top_10_resto
+    
+def cleaned_bottom_10_resto():
+    df_bottom_10_resto = None
+    try:
+        df_bottom_10_resto  = read_data_as_dataframe(InputTypes.CSV, SourceFiles.Bottom10Business.value)
+        df_bottom_10_resto['numeric_id'] = df_bottom_10_resto['business_id'].apply(assign_numeric_id)
+    except Exception as e:
+        show_error_message(ErrorHandling.ERRO_BOTTOM_10_CLEANNING.value, str(e))
+    finally:
+        return df_bottom_10_resto
+    
+#SENTIMENT ANALYSIS
+# def cleaned_review_dataframe():
+#     df_review = None
+#     try:
+#         df_review = read_data_as_dataframe(InputTypes.CSV, SourceFiles.REVIEW.value)
+#         analyzer = SentimentIntensityAnalyzer()
+#         sentiments = []
+#         for text in df_review['text']:
+#             sentiment = analyzer.polarity_scores(text)
+#             compound_score = sentiment['compound']
+#             if compound_score >= 0.05:
+#                 sentiment_label = 'Positive'
+#             elif compound_score <= -0.05:
+#                 sentiment_label = 'Negative'
+#             else:
+#                 sentiment_label = 'Neutral'
+#             sentiments.append({'Sentiment': sentiment_label, 'Score': compound_score})
+#         # Convert the list of sentiment results into a DataFrame
+#         sentiments_df = pd.DataFrame(sentiments)
+#         # Concatenate the original DataFrame 'review' with the 'sentiments_df'
+#         df_review = pd.concat([df_review, sentiments_df], axis=1)
+#     except Exception as e:
+#         show_error_message(ErrorHandling.ERROR_IN_SENTIMENT_ANALYSIS.value, str(e))
+#     finally:
+#         return df_review
+    
 def cleaned_dataframes_dict():
     dataframes_dict = {}
     try:
@@ -147,8 +194,10 @@ def cleaned_dataframes_dict():
         dataframes_dict['user']['date'] = pd.to_datetime(dataframes_dict['user']['date'], format='%Y-%m-%d %H:%M:%S')
         dataframes_dict['elite_user'] = cleaned_elite_user_dataframe()
         dataframes_dict['elite_user']['date'] = pd.to_datetime(dataframes_dict['elite_user']['date'], format='%Y-%m-%d %H:%M:%S')
-        dataframes_dict['review'] =  read_data_as_dataframe(InputTypes.CSV, SourceFiles.REVIEW.value)
-        dataframes_dict['review']['date'] = pd.to_datetime(dataframes_dict['review']['date'], format='%Y-%m-%d %H:%M:%S')
+        # dataframes_dict['review'] =  cleaned_review_dataframe()
+        # dataframes_dict['review']['date'] = pd.to_datetime(dataframes_dict['review']['date'], format='%Y-%m-%d %H:%M:%S')
+        dataframes_dict['top_10_resto']  = cleaned_top_10_resto()
+        dataframes_dict['bottom_10_resto']  = cleaned_bottom_10_resto()
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_DICT.value, str(e))
     finally:
