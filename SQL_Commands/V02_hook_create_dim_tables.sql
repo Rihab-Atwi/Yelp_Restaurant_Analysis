@@ -247,6 +247,6 @@ SELECT DISTINCT
     src_table.business_id, 
     src_table.date
 FROM target_schema.stg_checkin as src_table;
--- ON CONFLICT (business_id, checkin_time) 
--- DO UPDATE SET 
---     checkin_time = EXCLUDED.checkin_time;
+ON CONFLICT (business_id, checkin_time) 
+DO UPDATE SET 
+    checkin_time = EXCLUDED.checkin_time;
