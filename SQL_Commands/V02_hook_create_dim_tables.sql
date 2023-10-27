@@ -90,22 +90,6 @@ ON CONFLICT (elite_year_id)
 DO UPDATE SET 
     elite_year = EXCLUDED.elite_year; 
 
-/* Checkin dimension table */
-CREATE TABLE IF NOT EXISTS target_schema.dim_checkin
-(
-    business_id TEXT,
-    checkin_time TIMESTAMP 
-);
-CREATE INDEX IF NOT EXISTS "idx_business_id" ON target_schema.dim_checkin(business_id);
-INSERT INTO target_schema.dim_checkin (business_id, checkin_time)
-SELECT DISTINCT
-    src_table.business_id, 
-    src_table.date
-FROM target_schema.stg_checkin as src_table;
-ON CONFLICT (business_id, checkin_time) 
-DO UPDATE SET 
-    checkin_time = EXCLUDED.checkin_time;
-
 /* Business dimension table */
 CREATE TABLE IF NOT EXISTS target_schema.dim_user
 ( 
@@ -250,3 +234,19 @@ DO UPDATE SET
     dish_price = EXCLUDED.dish_price,
     price_range = EXCLUDED.price_range,
     review_count = EXCLUDED.review_count;
+
+/* Checkin dimension table */
+CREATE TABLE IF NOT EXISTS target_schema.dim_checkin
+(
+    business_id TEXT,
+    checkin_time TIMESTAMP 
+);
+CREATE INDEX IF NOT EXISTS "idx_business_id" ON target_schema.dim_checkin(business_id);
+INSERT INTO target_schema.dim_checkin (business_id, checkin_time)
+SELECT DISTINCT
+    src_table.business_id, 
+    src_table.date
+FROM target_schema.stg_checkin as src_table;
+-- ON CONFLICT (business_id, checkin_time) 
+-- DO UPDATE SET 
+--     checkin_time = EXCLUDED.checkin_time;
