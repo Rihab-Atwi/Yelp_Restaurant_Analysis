@@ -24,6 +24,9 @@ class ErrorHandling(Enum):
     ERROR_IN_SENTIMENT_ANALYSIS = "Error in reviews sentiment analysis"
     ERROR_TOP_10_CLEANNING =  "Error in cleaning top 10 resto dataframe"
     ERRO_BOTTOM_10_CLEANNING = "Error in cleaning bottom 10 resto dataframe"
+    TRUNCATE_ERROR = "Error in Truncating staging table"
+    EXECUTE_POSTHOOK_ERROR = "Error in Excuting posthook"
+
 
 class InputTypes(Enum):
     CSV = "csv"
@@ -40,7 +43,7 @@ class SourceFiles(Enum):
     Bottom10Business = "./CSV_files/Bottom_10_resto.csv"
 
 class DestinationSchemaName(Enum):
-    Datawarehouse = "dw_reporting"
+    Datawarehouse = "public_2"
 
 class SQLCommandsPath(Enum):
     SQL_FOLDER = "./SQL_Commands/"
