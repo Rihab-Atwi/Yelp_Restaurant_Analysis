@@ -8,14 +8,16 @@ CREATE TABLE IF NOT EXISTS target_schema.fct_review
     stars INT,
     useful INT,
     funny INT,
-    cool INT
+    cool INT,
+    topic TEXT,
+    sentiment TEXT,
+    score FLOAT
 
 );
 
 CREATE INDEX IF NOT EXISTS "idx_review_id" ON target_schema.fct_review (review_id);
 
-INSERT INTO target_schema.fct_review 
-    (review_id, date, business_id, user_id, text, stars, useful, funny, cool)
+INSERT INTO target_schema.fct_review(review_id, date, business_id, user_id, text, stars, useful, funny, cool,topic, sentiment, score)
 SELECT DISTINCT
     src_table.review_id,
     src_table.date, 
@@ -25,7 +27,10 @@ SELECT DISTINCT
     src_table.stars, 
     src_table.useful, 
     src_table.funny, 
-    src_table.cool 
+    src_table.cool,
+    topic TEXT,
+    sentiment TEXT,
+    score FLOAT
 FROM target_schema.stg_review AS src_table
 ON CONFLICT (review_id)
 DO UPDATE SET
@@ -37,4 +42,7 @@ DO UPDATE SET
     stars = EXCLUDED.stars,
     useful = EXCLUDED.useful,
     funny = EXCLUDED.funny,
-    cool = EXCLUDED.cool
+    cool = EXCLUDED.cool,
+    topic = EXCLUDED.topic,
+    sentiment = EXCLUDED.sentiment,
+    score = EXCLUDED.score
