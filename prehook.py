@@ -51,7 +51,6 @@ def create_sql_stg_table_idx(db_session,source_name,table_name,index_val):
         show_error_message(PreHookSteps.CREATE_TABLE_IDX.value, str(e))
 
 def execute_prehook(sql_commands_path = SQLCommandsPath.SQL_FOLDER):
-    step = None
     try:
         db_session = create_connection()
         execute_sql_folder_prehook(db_session,DestinationSchemaName.Datawarehouse,sql_commands_path)
