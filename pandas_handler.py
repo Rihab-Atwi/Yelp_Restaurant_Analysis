@@ -2,7 +2,6 @@ from lookups import InputTypes, SourceFiles, ErrorHandling
 from logging_handler import show_error_message
 from db_handler import read_data_as_dataframe 
 import pandas as pd
-import numpy as np
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # Define the assign_numeric_id function
@@ -68,17 +67,13 @@ def cleaned_attributes_dataframe():
     try:
         df_business = read_data_as_dataframe(InputTypes.CSV, SourceFiles.BUSINESS.value)
         df_business = df_business.dropna(subset=['attributes'])
-        # Remove single quotes, curly braces, and spaces from 'attributes' column
         df_business['attributes'] = df_business['attributes'].str.replace(r"['{}]", "").str.replace('"', "").str.replace(" ", "")
         df_business['attributes'] = df_business['attributes'].str.split(',')
         df_business = df_business.explode('attributes', ignore_index=True)
         df_business = df_business[['business_id','attributes']]
-        # Extract and filter attributes with ":True"
         df_business['filtered_attributes'] = df_business['attributes'].apply(lambda x: x.split(':')[0] if ':True' in x else None)
         df_business = df_business.dropna()
-        # Clean the attribute names
         df_business['filtered_attributes'] = df_business['filtered_attributes'].apply(lambda x: x.replace('_', '').capitalize())
-        # Drop the original 'attributes' column if needed
         df_business = df_business.drop(columns=['attributes'])
         df_business = df_business.reset_index(drop=True)
         df_business['attributes_id'] = pd.factorize(df_business['filtered_attributes'])[0] + 1
@@ -93,9 +88,7 @@ def cleaned_checkin_dataframe():
     df_checkin = None
     try:
         df_checkin = read_data_as_dataframe(InputTypes.CSV, SourceFiles.CHECKIN.value)
-        # Split the 'date' column into a list and explode it into separate rows
         df_checkin = df_checkin.assign(splited_date=df_checkin['date'].str.split(', ')).explode('splited_date')
-        # Extract the 'business_id' and 'splited_date' columns
         df_checkin = df_checkin[['business_id', 'splited_date']]
         df_checkin.rename(columns={'splited_date': 'date'}, inplace=True)
     except Exception as e:
@@ -109,7 +102,6 @@ def cleaned_user_dataframe():
         df_user = read_data_as_dataframe(InputTypes.CSV, SourceFiles.USER.value)
         df_user['nb_friends'] = df_user['friends'].apply(lambda x: len(x.split(', ')))
         df_user = df_user.drop('friends', axis=1)
-        # Replace 'elite' column with the number of elite years or 0 for NaN values
         df_user['elite'] = df_user['elite'].apply(lambda x: len(str(x).split(',')) if not pd.isna(x) else 0)
         df_user.rename(columns={'yelping_since': 'date'}, inplace=True)
     except Exception as e:
@@ -122,9 +114,7 @@ def cleaned_elite_user_dataframe():
     try:
         df_elite_user = read_data_as_dataframe(InputTypes.CSV, SourceFiles.USER.value)
         elite_years = df_elite_user['elite'][~df_elite_user['elite'].isna()].str.split(',').explode().reset_index(drop=True)
-        # Combine the new 'elite_years' DataFrame with 'user_id' and 'yelping_since'
         df_elite_years = pd.concat([df_elite_user['user_id'].iloc[elite_years.index], elite_years, df_elite_user['yelping_since'].iloc[elite_years.index]], axis=1)
-        # Rename columns for clarity
         df_elite_years.columns = ['user_id', 'elite_year', 'yelping_since']
         df_elite_user = df_elite_years
         df_elite_user['elite_year'] = df_elite_user['elite_year'].replace("20", "2020")
@@ -155,36 +145,9 @@ def cleaned_bottom_10_resto():
     finally:
         return df_bottom_10_resto
     
-#SENTIMENT ANALYSIS
-# def cleaned_review_dataframe():
-#     df_review = None
-#     try:
-#         df_review = read_data_as_dataframe(InputTypes.CSV, SourceFiles.REVIEW.value)
-#         analyzer = SentimentIntensityAnalyzer()
-#         sentiments = []
-#         for text in df_review['text']:
-#             sentiment = analyzer.polarity_scores(text)
-#             compound_score = sentiment['compound']
-#             if compound_score >= 0.05:
-#                 sentiment_label = 'Positive'
-#             elif compound_score <= -0.05:
-#                 sentiment_label = 'Negative'
-#             else:
-#                 sentiment_label = 'Neutral'
-#             sentiments.append({'Sentiment': sentiment_label, 'Score': compound_score})
-#         # Convert the list of sentiment results into a DataFrame
-#         sentiments_df = pd.DataFrame(sentiments)
-#         # Concatenate the original DataFrame 'review' with the 'sentiments_df'
-#         df_review = pd.concat([df_review, sentiments_df], axis=1)
-#     except Exception as e:
-#         show_error_message(ErrorHandling.ERROR_IN_SENTIMENT_ANALYSIS.value, str(e))
-#     finally:
-#         return df_review
-    
 def cleaned_dataframes_dict():
     dataframes_dict = {}
     try:
-        # Clean and store each DataFrame in the dictionary
         dataframes_dict['business'] = cleaned_business_dataframe()
         dataframes_dict['attributes'] = cleaned_attributes_dataframe()
         dataframes_dict['categories'] = cleaned_business_categories_dataframe() 
