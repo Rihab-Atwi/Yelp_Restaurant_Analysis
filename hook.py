@@ -146,5 +146,5 @@ def execute_hook():
         insert_or_update_etl_checkpoint(db_session, etl_time_exists=etl_time_exists,etl_id_exists=etl_id_exists)
         close_connection(db_session)
     except Exception as e:
-        error_prefix = f'{ErrorHandling.HOOK_SQL_ERROR.value} on step {step}'
+        error_prefix = ErrorHandling.HOOK_SQL_ERROR.value
         show_error_message(error_prefix, str(e))
