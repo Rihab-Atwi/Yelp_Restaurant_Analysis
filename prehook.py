@@ -53,13 +53,9 @@ def create_sql_stg_table_idx(db_session,source_name,table_name,index_val):
 def execute_prehook(sql_commands_path = SQLCommandsPath.SQL_FOLDER):
     step = None
     try:
-        step = 1
         db_session = create_connection()
-        step = 2
         execute_sql_folder_prehook(db_session,DestinationSchemaName.Datawarehouse,sql_commands_path)
-        step = 3
         create_sql_staging_table(db_session,DestinationSchemaName.Datawarehouse)
-        step = 4
         close_connection(db_session)
     except Exception as e:
         error_prefix = f'{ErrorHandling.PREHOOK_SQL_ERROR.value} on step {step}'
