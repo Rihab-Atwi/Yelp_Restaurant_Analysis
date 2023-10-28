@@ -42,24 +42,23 @@ An ETL project centered on Yelp restaurant data, aiming to extract, transform, a
 
   
 1. As Data Engineers:
-	I want to design an ETL pipeline that efficiently collects and processes Yelp restaurant data.
-	I want to automate data extraction from the Yelp dataset to keep our dataset current.
+	I want to design an ETL pipeline that efficiently collects and processes Yelp restaurant data.<br> I want to automate data extraction from the Yelp dataset to keep our dataset current.<br>
 	Ensure data quality and integrity in the ETL process, using the filtered Yelp dataset containing only restaurant data.
 2. As Data Analysts:
-	I want access to the restaurant dataset to perform in-depth analysis.
-	I want to generate reports and insights on restaurant trends, customer behavior, and ratings.
+	I want access to the restaurant dataset to perform in-depth analysis.<br>
+	I want to generate reports and insights on restaurant trends, customer behavior, and ratings.<br>
 	I want the ability to query the database for specific analyses.
 3. As Restaurant Owners and Managers:
-	I want to understand customer reviews and ratings to improve our restaurant's performance.
-	I want to identify areas for improvement and assess our restaurant's online reputation.
+	I want to understand customer reviews and ratings to improve our restaurant's performance.<br>
+	I want to identify areas for improvement and assess our restaurant's online reputation.<br>
 	Access to data visualizations for quick insights.
 4. As Market Researchers:
-	I want to analyze the restaurant industry's competitive landscape.
-	I want to track consumer preferences and dining trends.
+	I want to analyze the restaurant industry's competitive landscape.<br>
+	I want to track consumer preferences and dining trends.<br>
 	Access to comprehensive restaurant data for market research.
 5. As Investors and Entrepreneurs:
-	I want insights into the restaurant industry to identify investment opportunities.
-	I want to evaluate the performance and growth potential of different restaurants.
+	I want insights into the restaurant industry to identify investment opportunities.<br>
+	I want to evaluate the performance and growth potential of different restaurants.<br>
 	Access to data that can inform investment decisions in the food service sector.
 
 <br><br>
@@ -122,7 +121,7 @@ Bin Tracker is built using the following technologies:
 
 ## Frontend
 
-Interactive PowerBI Dashboard:
+Interactive PowerBI Dashboard:<br>
 A central dashboard where viewers can view:
 
 1. Restaurant Insights: Visualizations including graphs, charts, and data representations showcasing key restaurant attributes and trends over time.
