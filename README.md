@@ -16,8 +16,7 @@
 <a  name="philosophy" ></a>
 <img  src="./readme/title2.svg" id="project-philosophy"/>
 
-> 
-An ETL project centered on Yelp restaurant data, aiming to extract, transform, and load the data for the purpose of gaining insights into the restaurant industry, encompassing customer preferences, user behavior, and business performance.
+> An ETL project centered on Yelp restaurant data, aiming to extract, transform, and load the data for the purpose of gaining insights into the restaurant industry, encompassing customer preferences, user behavior, and business performance.
 
 <br>
 
