@@ -137,21 +137,13 @@ def insert_into_staging_tables(db_session, target_schema=DestinationSchemaName.D
         return staging   
    
 def execute_hook():
-    step = None
     try:
-        step = 1
         db_session = create_connection()
-        step = 2
         create_etl_checkpoint(DestinationSchemaName.Datawarehouse, db_session)
-        step = 3
         etl_date,etl_id, etl_time_exists,etl_id_exists = return_etl_last_updated_date(db_session)
-        step = 4
         insert_into_staging_tables(db_session, DestinationSchemaName.Datawarehouse, etl_date,etl_id)
-        step = 5
         execute_sql_folder_hook(db_session)
-        step = 6
         insert_or_update_etl_checkpoint(db_session, etl_time_exists=etl_time_exists,etl_id_exists=etl_id_exists)
-        step = 7
         close_connection(db_session)
     except Exception as e:
         error_prefix = f'{ErrorHandling.HOOK_SQL_ERROR.value} on step {step}'
