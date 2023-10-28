@@ -41,7 +41,7 @@ An ETL project centered on Yelp restaurant data, aiming to extract, transform, a
 ### User Stories
 
   
-1. As Data Engineers:
+1. As Data Engineers:<br>
 	I want to design an ETL pipeline that efficiently collects and processes Yelp restaurant data.<br> I want to automate data extraction from the Yelp dataset to keep our dataset current.<br>
 	Ensure data quality and integrity in the ETL process, using the filtered Yelp dataset containing only restaurant data.
 2. As Data Analysts:
