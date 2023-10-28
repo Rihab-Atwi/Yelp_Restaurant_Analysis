@@ -57,5 +57,5 @@ def execute_prehook(sql_commands_path = SQLCommandsPath.SQL_FOLDER):
         create_sql_staging_table(db_session,DestinationSchemaName.Datawarehouse)
         close_connection(db_session)
     except Exception as e:
-        error_prefix = f'{ErrorHandling.PREHOOK_SQL_ERROR.value} on step {step}'
+        error_prefix = ErrorHandling.PREHOOK_SQL_ERROR.value
         show_error_message(error_prefix,str(e))
