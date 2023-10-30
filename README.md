@@ -181,7 +181,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 <img  src="./readme/title6.svg" id="run"/>
   
 
-> To set up ## **USA Recession Analysis and Prediction** follow these steps:
+> To set up ## **Yelp Restaurant Analysis** follow these steps:
 
 ### Prerequisites
 
