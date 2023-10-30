@@ -1,5 +1,5 @@
 from db_handler import execute_query, create_statement_from_df, create_connection, close_connection
-from logging_handler import show_error_message 
+from logging_handler import show_error_message, setup_logging
 from lookups import ErrorHandling, PreHookSteps, SQLCommandsPath, DestinationSchemaName
 import os
 from pandas_handler import cleaned_dataframes_dict
@@ -50,11 +50,24 @@ def create_sql_stg_table_idx(db_session,source_name,table_name,index_val):
     except Exception as e:
         show_error_message(PreHookSteps.CREATE_TABLE_IDX.value, str(e))
 
-def execute_prehook(sql_commands_path = SQLCommandsPath.SQL_FOLDER):
+def execute_prehook(logger, sql_commands_path = SQLCommandsPath.SQL_FOLDER):
+    step = None
+    logger.info("Prehook:")
     try:
+        step=1
+        logger.info("Step 1: Create a database connection")
         db_session = create_connection()
+
+        step=2
+        logger.info("Step 2: Execute SQL folder prehook")
         execute_sql_folder_prehook(db_session,DestinationSchemaName.Datawarehouse,sql_commands_path)
+
+        step=3
+        logger.info("Step 3: Create SQL staging tables")
         create_sql_staging_table(db_session,DestinationSchemaName.Datawarehouse)
+
+        step = 4
+        logger.info("Step 4: Close the database connection\n")
         close_connection(db_session)
     except Exception as e:
         error_prefix = ErrorHandling.PREHOOK_SQL_ERROR.value
