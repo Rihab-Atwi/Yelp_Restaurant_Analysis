@@ -5,6 +5,7 @@ import os
 from pandas_handler import *
 from misc_handler import *
 import datetime
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def execute_sql_folder_hook(db_session, target_schema = DestinationSchemaName.Datawarehouse, sql_commands_path = SQLCommandsPath.SQL_FOLDER):
     sql_files = None
@@ -94,57 +95,108 @@ def return_etl_last_updated_date(db_session,
         return return_date,return_id, etl_time_exists,etl_id_exists
     
     
-def insert_into_staging_tables(db_session, target_schema=DestinationSchemaName.Datawarehouse, etl_date=None, etl_id = None):
+def insert_into_staging_tables(db_session, target_schema=DestinationSchemaName.Datawarehouse, etl_date=None, etl_id=None):
     staging = {}
     try:
         all_data = cleaned_dataframes_dict()
+        
+        # Process tables with ID
         data_frame_names = [member.name for member in StagingTablesNamesWithID]
         tables_names = [member.value for member in StagingTablesNamesWithID]
         
         for data_frame_name, table_name in zip(data_frame_names, tables_names):
-            staging_all_data = all_data[data_frame_name]
-            staging_all_data = staging_all_data[staging_all_data[DataDate.ID.value] > etl_id]
+            staging_all_data = all_data.get(data_frame_name, None)
+            if staging_all_data is not None:
+                staging_all_data = staging_all_data[staging_all_data[DataDate.ID.value] > etl_id]
 
-            if len(staging_all_data) > 0:
-                insert_stmt = insert_into_sql_statement_from_df(staging_all_data, target_schema.value, table_name)
-                execute_return = execute_query(db_session=db_session, query=insert_stmt)
+                if not staging_all_data.empty:
+                    insert_stmt = insert_into_sql_statement_from_df(staging_all_data, target_schema.value, table_name)
+                    execute_return = execute_query(db_session=db_session, query=insert_stmt)
 
-                if execute_return != ErrorHandling.NO_ERROR:
-                    raise Exception(f"{HookSteps.INSERT_INTO_STG_TABLE.value}: error executing insert_stmt.")
+                    if execute_return != ErrorHandling.NO_ERROR:
+                        raise Exception(f"{HookSteps.INSERT_INTO_STG_TABLE.value}: Error executing insert_stmt for table '{table_name}'.")
 
-                staging[data_frame_name] = f"Inserted new data after '{etl_id}' into {table_name} successfully."
-        
+                    staging[data_frame_name] = f"Inserted new data after '{etl_id}' into {table_name} successfully."
+
+        # Process tables with Date 
         data_frame_names = [member.name for member in StagingTablesNamesWithDate]
         tables_names = [member.value for member in StagingTablesNamesWithDate]
-        
+
         for data_frame_name, table_name in zip(data_frame_names, tables_names):
-            staging_all_data = all_data[data_frame_name]
-            staging_all_data = staging_all_data[staging_all_data[DataDate.DATE.value] > etl_date]
+            staging_all_data = all_data.get(data_frame_name, None)
+            if staging_all_data is not None:
+                staging_all_data = staging_all_data[staging_all_data[DataDate.DATE.value] > etl_date]
 
-            if len(staging_all_data) > 0:
-                insert_stmt = insert_into_sql_statement_from_df(staging_all_data, target_schema.value, table_name)
-                execute_return = execute_query(db_session=db_session, query=insert_stmt)
+                if not staging_all_data.empty:
+                    if data_frame_name == 'review':
+                        text_column_name = 'text'  
+                        text_data = staging_all_data[text_column_name]
 
-                if execute_return != ErrorHandling.NO_ERROR:
-                    raise Exception(f"{HookSteps.INSERT_INTO_STG_TABLE.value}: error executing insert_stmt.")
+                        analyzer = SentimentIntensityAnalyzer()
 
-                staging[data_frame_name] = f"Inserted new data after '{etl_date}' into {table_name} successfully."
+                        def update_sentiment_info(text):
+                            sentiment = analyzer.polarity_scores(text)
+                            sentiment_score = sentiment['compound']
+
+                            if sentiment_score > 0.05:
+                                sentiment_label = 'Positive'
+                            elif sentiment_score < -0.05:
+                                sentiment_label = 'Negative'
+                            else:
+                                sentiment_label = 'Neutral'
+                                
+                            return sentiment_score, sentiment_label
+
+                        sentiment_info = text_data.apply(update_sentiment_info)
+                        staging_all_data['score'], staging_all_data['sentiment'] = zip(*sentiment_info)
+
+                    insert_stmt = insert_into_sql_statement_from_df(staging_all_data, target_schema.value, table_name)
+                    execute_return = execute_query(db_session=db_session, query=insert_stmt)
+
+                    if execute_return != ErrorHandling.NO_ERROR:
+                        raise Exception(f"{HookSteps.INSERT_INTO_STG_TABLE.value}: Error executing insert_stmt for table '{table_name}'.")
+
+                    staging[data_frame_name] = f"Inserted new data after '{etl_date}' into {table_name} successfully."
     
     except Exception as e:
         show_error_message(HookSteps.INSERT_INTO_STG_TABLE.value, str(e))
     
     finally:
-        return staging   
+        return staging
    
-def execute_hook():
+   
+def execute_hook(logger):
+    step = None
+    logger.info("Hook:")
     try:
+        step=1
+        logger.info("Step 1: Create a database connection")
         db_session = create_connection()
+
+        step=2
+        logger.info("Step 2: Create ETL checkpoint")
         create_etl_checkpoint(DestinationSchemaName.Datawarehouse, db_session)
+
+        step = 3
+        logger.info("Step 3: Retrieve ETL last updated date")
         etl_date,etl_id, etl_time_exists,etl_id_exists = return_etl_last_updated_date(db_session)
+
+        step=4
+        logger.info("Step 4: Inserte data into staging tables")
         insert_into_staging_tables(db_session, DestinationSchemaName.Datawarehouse, etl_date,etl_id)
+
+        step=5
+        logger.info("Step 5: Execute SQL folder hook")
         execute_sql_folder_hook(db_session)
+
+        step=6
+        logger.info("Step 6: Inserte or updating ETL checkpoint")
         insert_or_update_etl_checkpoint(db_session, etl_time_exists=etl_time_exists,etl_id_exists=etl_id_exists)
+
+        step=7
+        logger.info("Step 7: Close the database connection\n")
         close_connection(db_session)
     except Exception as e:
         error_prefix = ErrorHandling.HOOK_SQL_ERROR.value
         show_error_message(error_prefix, str(e))
+
