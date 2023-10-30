@@ -84,6 +84,7 @@
 
 ### Data Flow Diagrams
 
+<title>Database Schema</title>
 <img src = "./readme/db_schema (1).jpg" />
 
 
@@ -240,7 +241,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 **Dependencies**:
 
--   Install the necessary Python libraries: `pandas`, `scikit-learn`, `vaderSentiment`, `nltk,` and `langdetect`.
+-   Install the necessary Python libraries: `pandas`, `psycopg2-binary`, `scikit-learn`, `vaderSentiment` `nltk`, and `langdetect`.
 -   Install database connectors/drivers for PostgreSQL.
   
 
