@@ -167,59 +167,6 @@ A central dashboard where viewers can view:
   
 ### App
 
-
-| Dashboard Screen | Create Bin Screen |
-
-| ---| ---|
-
-| ![Landing](./readme/implementation/dashboard.gif) | ![fsdaf](./readme/implementation/create_bin.gif) |
-
-  
-
-| Bins to Map Screen |
-
-| ---|
-
-| ![fsdaf](./readme/implementation/map.gif) |
-
-  
-  
-
-| Filter Bins Screen | Update Pickup Time Screen |
-
-| ---| ---|
-
-| ![Landing](./readme/implementation/filter_bins.gif) | ![fsdaf](./readme/implementation/update_pickup.gif) |
-
-  
-  
-
-| Announcements Screen |
-
-| ---|
-
-| ![fsdaf](./readme/implementation/message.gif)|
-
-  
-  
-
-| Change Map Screen | Edit Profile Screen |
-
-| ---| ---|
-
-| ![Landing](./readme/implementation/change_map.gif) | ![fsdaf](./readme/implementation/edit_profile.gif) |
-
-  
-  
-
-| Landing Screen |
-
-| ---|
-
-| ![fsdaf](./readme/implementation/landing.gif)|
-
-  
-
 <br><br>
 
 ### Machine Learning (ML) component
@@ -227,23 +174,6 @@ In my Yelp restaurant analysis project, I collected and preprocessed Yelp restau
 
 I evaluated these pre-trained models based on their performance in uncovering topics and assessing sentiment in the reviews. 
   
-
-| ML Flow Diagram|
-
-| ---| ---|
-
-|![fsdaf](./readme/implementation/arduino.gif)|![fsdaf](./readme/implementation/circuit.png)
-
-  
-
-| Data Transfer Demo |
-
-| ---|
-
-| ![fsdaf](./readme/implementation/arduino_data.png) |
-
-<br><br>
-
 
 <!-- How to run -->
 
