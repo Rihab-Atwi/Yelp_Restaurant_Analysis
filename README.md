@@ -251,7 +251,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 ```sh
 
-git clone https://github.co/your-repo-link/usa-recession-analysis.git
+git clone https://github.com/Rihab-Atwi/final_project_yelp.git
 
 ```
 
