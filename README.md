@@ -123,7 +123,7 @@ Users:
 
   
 
-Bin Tracker is built using the following technologies:
+Yelp Restaurant Analysis is built using the following technologies:
 
   
 
