@@ -3,6 +3,9 @@ from lookups import ErrorHandling, InputTypes
 from logging_handler import show_error_message
 import pandas as pd
 from datetime import time, datetime
+import warnings
+
+warnings.simplefilter(action='ignore', category=UserWarning)
 
 db_name = "yelp_data"
 db_user = "postgres"
