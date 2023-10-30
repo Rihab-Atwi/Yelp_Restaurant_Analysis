@@ -1,8 +1,7 @@
-from lookups import InputTypes, SourceFiles, ErrorHandling
+from lookups import *
 from logging_handler import show_error_message
 from db_handler import read_data_as_dataframe 
 import pandas as pd
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # Define the assign_numeric_id function
 numeric_id_counter = 0
@@ -91,6 +90,8 @@ def cleaned_checkin_dataframe():
         df_checkin = df_checkin.assign(splited_date=df_checkin['date'].str.split(', ')).explode('splited_date')
         df_checkin = df_checkin[['business_id', 'splited_date']]
         df_checkin.rename(columns={'splited_date': 'date'}, inplace=True)
+        df_checkin.reset_index(drop=True, inplace=True)
+        df_checkin['id'] = range(1, len(df_checkin) + 1)
     except Exception as e:
         show_error_message(ErrorHandling.ERROR_CHECKIN_CLEANING.value, str(e))
     finally:
@@ -144,6 +145,18 @@ def cleaned_bottom_10_resto():
         show_error_message(ErrorHandling.ERRO_BOTTOM_10_CLEANNING.value, str(e))
     finally:
         return df_bottom_10_resto
+
+def cleaned_review():
+    df_review  = None
+    try:
+        df_review =  read_data_as_dataframe(InputTypes.CSV, SourceFiles.REVIEW.value)
+        df_review['score'] = 0
+        df_review['score'] = df_review['score'].astype(float)
+        df_review['sentiment'] = 'None'
+    except Exception as e:
+        show_error_message(ErrorHandling.ERRO_REVIEW_CLEANNING.value, str(e))
+    finally:
+        return df_review
     
 def cleaned_dataframes_dict():
     dataframes_dict = {}
@@ -157,7 +170,7 @@ def cleaned_dataframes_dict():
         dataframes_dict['user']['date'] = pd.to_datetime(dataframes_dict['user']['date'], format='%Y-%m-%d %H:%M:%S')
         dataframes_dict['elite_user'] = cleaned_elite_user_dataframe()
         dataframes_dict['elite_user']['date'] = pd.to_datetime(dataframes_dict['elite_user']['date'], format='%Y-%m-%d %H:%M:%S')
-        dataframes_dict['review'] =  read_data_as_dataframe(InputTypes.CSV, SourceFiles.REVIEW.value)
+        dataframes_dict['review'] =  cleaned_review()
         dataframes_dict['review']['date'] = pd.to_datetime(dataframes_dict['review']['date'], format='%Y-%m-%d %H:%M:%S')
         dataframes_dict['top_10_resto']  = cleaned_top_10_resto()
         dataframes_dict['bottom_10_resto']  = cleaned_bottom_10_resto()
