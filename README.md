@@ -84,15 +84,14 @@
 
 ### Data Flow Diagrams
 
-  
+<img src = "C:\Users\User\Desktop\Final Project\readme\db_schema (1).jpg" />
+
 
 | Map screen | Dashboard screen | Bin Management screen |
 
 | ---| ---| ---|
 
 | ![Map](readme/mockups/web/map.png)| ![Map](./readme/mockups/web/dashboard.png)| ![Map](./readme/mockups/web/bin_crud.png)|
-
-<img src = "C:\Users\User\Desktop\Final Project\readme\db_schema (1).jpg" />
   
 
 | Announcements screen | Login screen | Landing screen |
