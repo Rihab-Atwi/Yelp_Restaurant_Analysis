@@ -21,9 +21,7 @@
 <br>
 
   
-
 ### User Types
-
  
 
 1. Data Engineers.
@@ -36,7 +34,6 @@
 <br>
 
   
-
 ### User Stories
 
   
@@ -71,45 +68,77 @@
 
 ### Logger File
 
-  
 
-| Bins Map screen | Dashboard screen | Bin Management screen |
+| app.log |
+| -----------------|
+|![Log](./readme/LOG.png) |
 
-| ---| ---| ---|
-
-| ![Landing](./readme/wireframes/web/map.png) | ![Admin Dashboard](./readme/wireframes/web/dashboard.png) | ![User Management](./readme/wireframes/web/bin_crud.png) |
-
-  
-  
 
 ### Data Flow Diagrams
 
-Database Schema
-<img src = "./readme/db_schema (1).jpg" />
+| Schema Diagram |
+| ---------------|
+|![Log](./readme/db_schema.jpg) |
+ 
+
+  
+<br><br>
+
+### Report Screenshots
+
+| Home Page |
+| ----------|
+|![Home](./readme/powerbi_sc/HomePage.png) |
+ 
+
 <br>
-Powerbi Home Page:
+
+| Overview |
+| ----------|
+|![Overview](./readme/powerbi_sc/Overview.png) | 
+
+
+ <br> 
+  
+| Restaurants Overview - Snapshot |
+| ----------|
+|![Restaurants](./readme/powerbi_sc/snapshot.png) | 
+
+
+  
 <br>
-<img src = "./readme/powerbi_sc/Final Project.PNG" />
+
+| Top Restaurant Analysis|
+| ------------------------|
+|![Top](./readme/powerbi_sc/top.png) | 
+
+
+<br> 
+  
+
+| Bottom Restaurant Analysis |
+| -----------------|
+|![Bottom](./readme/powerbi_sc/bottom.png) | 
+
+
+<br> 
+  
+| Reviews Analysis |
+| -----------------------|
+|![Reviews](./readme/powerbi_sc/reviews.png) | 
+
+
 <br>
-Overview:
+
+
+
+| Users Analysis |
+| -----------------------|
+|![Users](./readme/powerbi_sc/users.png) | 
+
+
 <br>
-<img src = "./readme/powerbi_sc/Capture.PNG" />
-<br>
-Snapshot of Restaurants:
-<br>
-<img src = "./readme/powerbi_sc/snapshot.PNG" />
-<br>
-Top-Bottom Restaurants:
-<br>
-<img src = "./readme/powerbi_sc/top-bottom.PNG" />
-<br>
-Restaurants Reviews:
-<br>
-<img src = "./readme/powerbi_sc/Reviews.PNG" />
-<br>
-Users:
-<br>
-<img src = "./readme/powerbi_sc/users.PNG" />
+  
 
 
 
@@ -120,10 +149,12 @@ Users:
 <img  src="./readme/title4.svg" id="stacks" />
 
 <br>
-
   
-
 Yelp Restaurant Analysis is built using the following technologies:
+1. **SQL:** Used to create schema tables.
+2. **Python:** Used to code data extraction and cleaning processes and ETL steps (Prehook, Hook, Posthook) using Python modules and libraries like pandas, requests, numpy, psycopg2, enum, etc.
+3. **VaderSentiment:** is a Python library for sentiment analysis of text data, ideal for analyzing reviews in your project, providing sentiment categorization and intensity scores.
+4. **PowerBI:** Used to create an interactive report through visuals and DAX.
 
   
 
@@ -164,10 +195,6 @@ A central dashboard where viewers can view:
 
 > Show command line of ETL performance - Logger view
 
-  
-### App
-
-<br><br>
 
 ### Machine Learning (ML) component
 In my Yelp restaurant analysis project, I collected and preprocessed Yelp restaurant reviews. For topic modeling, I used Latent Dirichlet Allocation (LDA) without training a custom model. Sentiment analysis was done using the VADER tool from NLTK without model training.
@@ -181,7 +208,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 <img  src="./readme/title6.svg" id="run"/>
   
 
-> To set up ## **Yelp Restaurant Analysis** follow these steps:
+> To set up **Yelp Restaurant Analysis** follow these steps:
 
 ### Prerequisites
 
