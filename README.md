@@ -240,7 +240,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 **Dependencies**:
 
--   Install the necessary Python libraries: pandas, scikit-learn, vaderSentiment, nltk, and langdetect.
+-   Install the necessary Python libraries: `pandas`, `scikit-learn`, `vaderSentiment`, `nltk,` and `langdetect`.
 -   Install database connectors/drivers for PostgreSQL.
   
 
