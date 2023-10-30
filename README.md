@@ -88,7 +88,7 @@ Database Schema
 <img src = "./readme/db_schema (1).jpg" />
 
 PowerBi Home Page:
-<<img src = "./readme/powerbi_sc/Capture.png" />
+<<img src = "./readme/powerbi_sc/Capture.PNG" />
 
 
 
