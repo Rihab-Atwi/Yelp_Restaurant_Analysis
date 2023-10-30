@@ -24,6 +24,7 @@ class ErrorHandling(Enum):
     ERROR_IN_SENTIMENT_ANALYSIS = "Error in reviews sentiment analysis"
     ERROR_TOP_10_CLEANNING =  "Error in cleaning top 10 resto dataframe"
     ERRO_BOTTOM_10_CLEANNING = "Error in cleaning bottom 10 resto dataframe"
+    ERRO_REVIEW_CLEANNING = "Error in cleaning In Review dataframe"
     TRUNCATE_ERROR = "Error in Truncating staging table"
     EXECUTE_POSTHOOK_ERROR = "Error in Excuting posthook"
 
@@ -57,6 +58,8 @@ class HookSteps(Enum):
     INSERT_UPDATE_ETL_CHECKPOINT = "Insert_or_update_etl_checkpoint"
     RETURN_LAST_ETL_RUN = "Return_etl_last_updated_date"
     INSERT_INTO_STG_TABLE = "Insert_into_stg_tables"
+    ADD_SENTIMENT = "Error in applying the sentiment to the dataframe"
+    SENTIMENT_FUNCTION = "Error in adding sentiment beacause of bug in update_sentiment_info function"
 
 class ETL_Checkpoint(Enum):
     TABLE = "etl_checkpoint"
@@ -81,3 +84,7 @@ class StagingTablesNamesWithID(Enum):
     categories = "stg_categories"
     top_10_resto = "stg_top_10_resto"
     bottom_10_resto = "stg_bottom_10_resto"
+
+# class StagingWithSentiment(Enum):
+#     REVIEW = 'review'
+#     COLUMN = 'text'
