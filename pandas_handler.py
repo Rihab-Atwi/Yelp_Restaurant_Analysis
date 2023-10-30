@@ -2,6 +2,7 @@ from lookups import *
 from logging_handler import show_error_message
 from db_handler import read_data_as_dataframe 
 import pandas as pd
+import warnings
 
 # Define the assign_numeric_id function
 numeric_id_counter = 0
@@ -66,6 +67,7 @@ def cleaned_attributes_dataframe():
     try:
         df_business = read_data_as_dataframe(InputTypes.CSV, SourceFiles.BUSINESS.value)
         df_business = df_business.dropna(subset=['attributes'])
+        warnings.simplefilter(action='ignore', category=FutureWarning)
         df_business['attributes'] = df_business['attributes'].str.replace(r"['{}]", "").str.replace('"', "").str.replace(" ", "")
         df_business['attributes'] = df_business['attributes'].str.split(',')
         df_business = df_business.explode('attributes', ignore_index=True)
@@ -178,4 +180,5 @@ def cleaned_dataframes_dict():
         show_error_message(ErrorHandling.ERROR_DICT.value, str(e))
     finally:
         return dataframes_dict
+
 
