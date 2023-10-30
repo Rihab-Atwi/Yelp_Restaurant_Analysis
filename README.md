@@ -84,8 +84,12 @@
 
 ### Data Flow Diagrams
 
-<title>Database Schema</title>
+Database Schema
 <img src = "./readme/db_schema (1).jpg" />
+
+PowerBi Home Page:
+<<img src = "./readme/powerbi_sc/Capture.png" />
+
 
 
 
