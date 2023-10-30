@@ -87,8 +87,24 @@
 Database Schema
 <img src = "./readme/db_schema (1).jpg" />
 
-PowerBi Home Page:
-<<img src = "./readme/powerbi_sc/Capture.PNG" />
+Powerbi Home Page:
+<br>
+<img src = "./readme/powerbi_sc/Final Project.PNG" />
+Overview:
+<br>
+<img src = "./readme/powerbi_sc/Capture.PNG" />
+Snapshot of Restaurants:
+<br>
+<img src = "./readme/powerbi_sc/snapshot.PNG" />
+Top-Bottom Restaurants:
+<br>
+<img src = "./readme/powerbi_sc/top-bottom.PNG" />
+Restaurants Reviews:
+<br>
+<img src = "./readme/powerbi_sc/Reviews.PNG" />
+Users:
+<br>
+<img src = "./readme/powerbi_sc/users.PNG" />
 
 
 
