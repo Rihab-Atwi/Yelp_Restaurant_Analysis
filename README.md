@@ -102,7 +102,7 @@
   
 | Restaurants Overview - Snapshot |
 | ----------|
-|![Restaurants](./readme/powerbi_sc/snapshot.png) | 
+|![Restaurants](./readme/powerbi_sc/snapshot.PNG) | 
 
 
   
@@ -125,7 +125,7 @@
   
 | Reviews Analysis |
 | -----------------------|
-|![Reviews](./readme/powerbi_sc/reviews.png) | 
+|![Reviews](./readme/powerbi_sc/Reviews.PNG) | 
 
 
 <br>
@@ -134,7 +134,7 @@
 
 | Users Analysis |
 | -----------------------|
-|![Users](./readme/powerbi_sc/users.png) | 
+|![Users](./readme/powerbi_sc/snapshot.PNG) | 
 
 
 <br>
