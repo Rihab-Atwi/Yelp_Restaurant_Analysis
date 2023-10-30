@@ -1,0 +1,19 @@
+2023-10-30 13:56:35,593 - ETLLogger - INFO - Prehook:
+2023-10-30 13:56:35,599 - ETLLogger - INFO - Step 1: Create a database connection
+2023-10-30 13:56:35,778 - ETLLogger - INFO - Step 2: Execute SQL folder prehook
+2023-10-30 13:56:35,792 - ETLLogger - INFO - Step 3: Create SQL staging tables
+2023-10-30 13:57:02,497 - ETLLogger - INFO - Step 4: Close the database connection
+
+2023-10-30 13:57:02,503 - ETLLogger - INFO - Hook:
+2023-10-30 13:57:02,504 - ETLLogger - INFO - Step 1: Create a database connection
+2023-10-30 13:57:02,614 - ETLLogger - INFO - Step 2: Create ETL checkpoint
+2023-10-30 13:57:02,616 - ETLLogger - INFO - Step 3: Retrieve ETL last updated date
+2023-10-30 13:57:02,628 - ETLLogger - INFO - Step 4: Inserte data into staging tables
+2023-10-30 14:15:02,133 - ETLLogger - INFO - Step 5: Execute SQL folder hook
+2023-10-30 14:18:09,491 - ETLLogger - INFO - Step 6: Inserte or updating ETL checkpoint
+2023-10-30 14:18:09,493 - ETLLogger - INFO - Step 7: Close the database connection
+
+2023-10-30 14:18:09,523 - ETLLogger - INFO - Posthook:
+2023-10-30 14:18:09,524 - ETLLogger - INFO - Step 1: Create a database connection
+2023-10-30 14:18:09,604 - ETLLogger - INFO - Step 2: Truncate staging table
+2023-10-30 14:18:13,887 - ETLLogger - INFO - Step 3: Close database connection
