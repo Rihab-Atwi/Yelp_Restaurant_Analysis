@@ -69,7 +69,7 @@
 ### Logger File
 
 
-| app.log |
+| app.log - First ETL Run |
 | -----------------|
 |![Log](./readme/LOG.png) |
 
