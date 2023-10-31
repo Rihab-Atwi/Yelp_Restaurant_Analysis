@@ -184,7 +184,7 @@ Tools:
 
 | Users Analysis |
 | -----------------------|
-|![Users](./readme/powerbi_sc/users.png) | 
+|![Users](./readme/powerbi_sc/user.png) | 
 
 <br>
   
