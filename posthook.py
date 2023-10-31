@@ -35,7 +35,7 @@ def execute_posthook(logger):
         truncate_staging_table(db_session, source_name = DestinationSchemaName.Datawarehouse)
 
         step=3
-        logger.info("Step 3: Close database connection")
+        logger.info("Step 3: Close database connection\n")
         close_connection(db_session)
 
     except Exception as e:
