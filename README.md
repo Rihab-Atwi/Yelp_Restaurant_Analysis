@@ -195,23 +195,29 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 <br>
   
-| Home Page GIF | Overview Page GIF | 
+| Home Page | Overview Page | 
 | ---------| ---------| 
 |![HomePage](./readme/homepage.gif) |![Overview](./readme/overview.gif)|
 
 <br>
 
-| Snapshot Page GIF | Top-Bottom Restaurant Page GIF | 
+| Snapshot Page | Top-Bottom Restaurant Page | 
 | ---------| ---------| 
 |![Snapshot](./readme/snapshot.gif) |![Top-Bottom](./readme/top-bottom.gif)|
 
 <br>
 
-| Review Page GIF | Users Page GIF | 
+| Review Page | Users Page | 
 | ---------| ---------| 
 |![Review](./readme/rviews.gif) |![Users](./readme/users.gif)|
 
 <br>
+
+| Report Recap Video|
+| ---------------|
+
+<br><br>
+<br><br>
 
 <!-- How to run -->
 
