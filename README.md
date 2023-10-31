@@ -103,12 +103,6 @@ Interactive PowerBI Dashboard: A central dashboard where viewers can view:
 2. Review Sentiment Analysis: I conducted sentiment analysis to understand public sentiment about the restaurants, presenting the results through pie charts and sentiment bars. 
 3. Comprehensive Analysis of Yelp Restaurants: Unveiling Common Attributes,Categories, buseist hour and day.
 4. Interactive filters: options to filter by region.
-
-
-  
-
-<br>
-
   
 
 ## Backend
