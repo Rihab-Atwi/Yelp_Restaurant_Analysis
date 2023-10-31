@@ -93,6 +93,7 @@
 <img  src="./readme/title5.svg" id="stacks" />
 
 <br>
+Yelp Restaurant Analysis is built using the following technologies:
   
 ## Frontend
 
@@ -118,17 +119,17 @@ A central dashboard where viewers can view:
 3. Database: Schema Design - Indexing - Data Integrity - Backup & Recovery.
 4. Machine Learning: Sentiment Analysis - Topic Modeling.
 
-<br><br>
-Yelp Restaurant Analysis is built using the following technologies:
-1. **SQL:** Used to create schema tables.
-2. **Python:** Used to code data extraction and cleaning processes and ETL steps (Prehook, Hook, Posthook) using Python modules and libraries like pandas, requests, numpy, psycopg2, enum, etc.
-3. **VaderSentiment:** is a Python library for sentiment analysis of text data, ideal for analyzing reviews in your project, providing sentiment categorization and intensity scores.
-4. **PowerBI:** Used to create an interactive report through visuals and DAX.
-
 ## Machine Learning (ML) component
 In my Yelp restaurant analysis project, I collected and preprocessed Yelp restaurant reviews. For topic modeling, I used Latent Dirichlet Allocation (LDA) without training a custom model. Sentiment analysis was done using the VADER tool from NLTK without model training.
 
 I evaluated these pre-trained models based on their performance in uncovering topics and assessing sentiment in the reviews. 
+
+<br><br>
+Tools:
+- **SQL:** Used to create schema tables.
+- **Python:** Used to code data extraction and cleaning processes and ETL steps (Prehook, Hook, Posthook) using Python modules and libraries like pandas, requests, numpy, psycopg2, enum, etc.
+- **VaderSentiment:** is a Python library for sentiment analysis of text data, ideal for analyzing reviews in your project, providing sentiment categorization and intensity scores.
+- **PowerBI:** Used to create an interactive report through visuals and DAX.
     
 <br>
 
