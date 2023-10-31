@@ -124,7 +124,7 @@ In my Yelp restaurant analysis project, I collected and preprocessed Yelp restau
 
 I evaluated these pre-trained models based on their performance in uncovering topics and assessing sentiment in the reviews. 
 
-<br><br>
+<br>
 Tools:
 - **SQL:** Used to create schema tables.
 - **Python:** Used to code data extraction and cleaning processes and ETL steps (Prehook, Hook, Posthook) using Python modules and libraries like pandas, requests, numpy, psycopg2, enum, etc.
@@ -133,7 +133,6 @@ Tools:
     
 <br>
 
-<br>
 
   
 
@@ -141,6 +140,8 @@ Tools:
 
 <a  name="Demo"  ></a>
 <img  src="./readme/title4.svg" id="#demo"/>
+<br>
+
 
 ### Report Screenshots
 
