@@ -215,7 +215,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 | Report Recap Video|
 | ---------------|
-https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis/blob/6c0f8d6c16753d49981b83873f3805137fc334f2/readme/powerbi_sc/powerbi-2_MqIG0JEW%20(1)%20(1)
+readme/powerbi_sc/powerbi-2_MqIG0JEW (1) (1).mp4
 <br><br>
 <br><br>
 
