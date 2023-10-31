@@ -121,9 +121,7 @@ A central dashboard where viewers can view:
 
 ## Machine Learning (ML) component
 In my Yelp restaurant analysis project, I collected and preprocessed Yelp restaurant reviews. For topic modeling, I used Latent Dirichlet Allocation (LDA) without training a custom model. Sentiment analysis was done using the VADER tool from NLTK without model training.
-
 I evaluated these pre-trained models based on their performance in uncovering topics and assessing sentiment in the reviews. 
-
 <br><br>
 Tools:
 - **SQL:** Used to create schema tables.
@@ -222,10 +220,6 @@ Tools:
 
 https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis/assets/76687940/b8ad365a-7319-4d8b-a8f3-22dab59586ad
 
-
-
-
-<br><br>
 <br><br>
 
 <!-- How to run -->
