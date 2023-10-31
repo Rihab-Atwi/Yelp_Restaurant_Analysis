@@ -97,8 +97,7 @@ Yelp Restaurant Analysis is built using the following technologies:
   
 ## Frontend
 
-Interactive PowerBI Dashboard:<br>
-A central dashboard where viewers can view:
+Interactive PowerBI Dashboard: A central dashboard where viewers can view:
 
 1. Restaurant Insights: Visualizations including graphs, charts, and data representations showcasing key restaurant attributes and trends over time.
 2. Review Sentiment Analysis: I conducted sentiment analysis to understand public sentiment about the restaurants, presenting the results through pie charts and sentiment bars. Additionally, I performed topic modeling to identify the most frequently occurring topics in both positive and negative reviews.
@@ -236,7 +235,7 @@ https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis/assets/76687940/b8ad365a-
 **Hardware & Software**:
 
 -   A computer/server with sufficient RAM and processing power.
--   Operating system: Windows.
+-   Operating system: Linux (preferred for production) or Windows.
 -   Required software: Python (3.x), PostgreSQL, Git (for version control), and essential software packages including vaderSentiment, nltk, scikit-learn, and langdetect to collect, preprocess, and analyze Yelp reviews for sentiment, topics, and language,
   
   
