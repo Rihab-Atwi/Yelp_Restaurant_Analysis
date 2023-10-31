@@ -100,7 +100,7 @@ Yelp Restaurant Analysis is built using the following technologies:
 Interactive PowerBI Dashboard: A central dashboard where viewers can view:
 
 1. Restaurant Insights: Visualizations including graphs, charts, and data representations showcasing key restaurant attributes and trends over time.
-2. Review Sentiment Analysis: I conducted sentiment analysis to understand public sentiment about the restaurants, presenting the results through pie charts and sentiment bars. Additionally, I performed topic modeling to identify the most frequently occurring topics in both positive and negative reviews.
+2. Review Sentiment Analysis: I conducted sentiment analysis to understand public sentiment about the restaurants, presenting the results through pie charts and sentiment bars. 
 3. Comprehensive Analysis of Yelp Restaurants: Unveiling Common Attributes,Categories, buseist hour and day.
 4. Interactive filters: options to filter by region.
 
