@@ -267,7 +267,7 @@ git clone https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis.git
 ### **Running the Backend**:
 
 **Start the Data Ingestion & ETL Process**:
-`python data_ingestion_script.py`
+`main.py`
 
 
 You should be able to check the app.log file to see the ETL work.
