@@ -125,7 +125,7 @@ Yelp Restaurant Analysis is built using the following technologies:
 3. **VaderSentiment:** is a Python library for sentiment analysis of text data, ideal for analyzing reviews in your project, providing sentiment categorization and intensity scores.
 4. **PowerBI:** Used to create an interactive report through visuals and DAX.
 
-### Machine Learning (ML) component
+## Machine Learning (ML) component
 In my Yelp restaurant analysis project, I collected and preprocessed Yelp restaurant reviews. For topic modeling, I used Latent Dirichlet Allocation (LDA) without training a custom model. Sentiment analysis was done using the VADER tool from NLTK without model training.
 
 I evaluated these pre-trained models based on their performance in uncovering topics and assessing sentiment in the reviews. 
