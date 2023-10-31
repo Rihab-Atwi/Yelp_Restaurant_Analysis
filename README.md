@@ -217,6 +217,14 @@ I evaluated these pre-trained models based on their performance in uncovering to
 | ---------------|
 
 https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis/assets/76687940/661a0d54-6feb-40ae-a7fd-716d1da1b2ed
+<br><br>
+<br><br>
+
+| Report Recap Video|
+| ---------------|
+
+https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis/assets/76687940/1754bc44-afe1-4c2e-9396-d92ccdc3bb67
+
 
 
 <br><br>
