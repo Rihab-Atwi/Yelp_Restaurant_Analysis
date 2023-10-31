@@ -270,4 +270,4 @@ git clone https://github.com/Rihab-Atwi/final_project_yelp.git
 
 You should be able to check the app.log file to see the ETL work.
 
-As for the dashboard access: Please use this link "public powerbi link" to access your data.
+As for the dashboard access: Please use [this link](https://app.powerbi.com/view?r=eyJrIjoiNzg5OTZjNWUtNGY1OS00MTFjLTliZjEtM2Q4OWFmYzk0ZTQwIiwidCI6IjJhZDk2OTM0LTQzZTUtNDFjMi05NzYxLWYzMzVmZTIxNGNjMyIsImMiOjl9) to access the Power BI report.
