@@ -251,8 +251,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 ```sh
 
-git clone https://github.com/Rihab-Atwi/final_project_yelp.git
-
+git clone https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis.git
 ```
 
   
