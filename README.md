@@ -215,7 +215,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 | Report Recap Video|
 | ---------------|
-
+readme/powerbi_sc/powerbi-2_MqIG0JEW (1) (1).mp4
 <br><br>
 <br><br>
 
