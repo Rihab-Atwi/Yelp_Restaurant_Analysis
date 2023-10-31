@@ -40,19 +40,19 @@
 1. As Data Engineers:<br>
 	I want to design an ETL pipeline that efficiently collects and processes Yelp restaurant data.<br> I want to automate data extraction from the Yelp dataset to keep our dataset current.<br>
 	Ensure data quality and integrity in the ETL process, using the filtered Yelp dataset containing only restaurant data.
-2. As Data Analysts:
+2. As Data Analysts:<br>
 	I want access to the restaurant dataset to perform in-depth analysis.<br>
 	I want to generate reports and insights on restaurant trends, customer behavior, and ratings.<br>
 	I want the ability to query the database for specific analyses.
-3. As Restaurant Owners and Managers:
+3. As Restaurant Owners and Managers:<br>
 	I want to understand customer reviews and ratings to improve our restaurant's performance.<br>
 	I want to identify areas for improvement and assess our restaurant's online reputation.<br>
 	Access to data visualizations for quick insights.
-4. As Market Researchers:
+4. As Market Researchers:<br>
 	I want to analyze the restaurant industry's competitive landscape.<br>
 	I want to track consumer preferences and dining trends.<br>
 	Access to comprehensive restaurant data for market research.
-5. As Investors and Entrepreneurs:
+5. As Investors and Entrepreneurs:<br>
 	I want insights into the restaurant industry to identify investment opportunities.<br>
 	I want to evaluate the performance and growth potential of different restaurants.<br>
 	Access to data that can inform investment decisions in the food service sector.
@@ -93,14 +93,14 @@
 <img  src="./readme/title5.svg" id="stacks" />
 
 <br>
+Yelp Restaurant Analysis is built using the following technologies:
   
 ## Frontend
 
-Interactive PowerBI Dashboard:<br>
-A central dashboard where viewers can view:
+Interactive PowerBI Dashboard: A central dashboard where viewers can view:
 
 1. Restaurant Insights: Visualizations including graphs, charts, and data representations showcasing key restaurant attributes and trends over time.
-2. Review Sentiment Analysis: I conducted sentiment analysis to understand public sentiment about the restaurants, presenting the results through pie charts and sentiment bars. Additionally, I performed topic modeling to identify the most frequently occurring topics in both positive and negative reviews.
+2. Review Sentiment Analysis: I conducted sentiment analysis to understand public sentiment about the restaurants, presenting the results through pie charts and sentiment bars. 
 3. Comprehensive Analysis of Yelp Restaurants: Unveiling Common Attributes,Categories, buseist hour and day.
 4. Interactive filters: options to filter by region.
 
@@ -118,21 +118,18 @@ A central dashboard where viewers can view:
 3. Database: Schema Design - Indexing - Data Integrity - Backup & Recovery.
 4. Machine Learning: Sentiment Analysis - Topic Modeling.
 
-<br><br>
-Yelp Restaurant Analysis is built using the following technologies:
-1. **SQL:** Used to create schema tables.
-2. **Python:** Used to code data extraction and cleaning processes and ETL steps (Prehook, Hook, Posthook) using Python modules and libraries like pandas, requests, numpy, psycopg2, enum, etc.
-3. **VaderSentiment:** is a Python library for sentiment analysis of text data, ideal for analyzing reviews in your project, providing sentiment categorization and intensity scores.
-4. **PowerBI:** Used to create an interactive report through visuals and DAX.
-
 ## Machine Learning (ML) component
 In my Yelp restaurant analysis project, I collected and preprocessed Yelp restaurant reviews. For topic modeling, I used Latent Dirichlet Allocation (LDA) without training a custom model. Sentiment analysis was done using the VADER tool from NLTK without model training.
-
 I evaluated these pre-trained models based on their performance in uncovering topics and assessing sentiment in the reviews. 
+<br><br>
+Tools:
+- **SQL:** Used to create schema tables.
+- **Python:** Used to code data extraction and cleaning processes and ETL steps (Prehook, Hook, Posthook) using Python modules and libraries like pandas, requests, numpy, psycopg2, enum, etc.
+- **VaderSentiment:** is a Python library for sentiment analysis of text data, ideal for analyzing reviews in your project, providing sentiment categorization and intensity scores.
+- **PowerBI:** Used to create an interactive report through visuals and DAX.
     
 <br>
 
-<br>
 
   
 
@@ -140,6 +137,8 @@ I evaluated these pre-trained models based on their performance in uncovering to
 
 <a  name="Demo"  ></a>
 <img  src="./readme/title4.svg" id="#demo"/>
+<br>
+
 
 ### Report Screenshots
 
@@ -216,7 +215,10 @@ I evaluated these pre-trained models based on their performance in uncovering to
 | Report Recap Video|
 | ---------------|
 
-<br><br>
+
+
+https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis/assets/76687940/b8ad365a-7319-4d8b-a8f3-22dab59586ad
+
 <br><br>
 
 <!-- How to run -->
@@ -233,7 +235,7 @@ I evaluated these pre-trained models based on their performance in uncovering to
 **Hardware & Software**:
 
 -   A computer/server with sufficient RAM and processing power.
--   Operating system: Windows.
+-   Operating system: Linux (preferred for production) or Windows.
 -   Required software: Python (3.x), PostgreSQL, Git (for version control), and essential software packages including vaderSentiment, nltk, scikit-learn, and langdetect to collect, preprocess, and analyze Yelp reviews for sentiment, topics, and language,
   
   
@@ -264,7 +266,7 @@ git clone https://github.com/Rihab-Atwi/Yelp_Restaurant_Analysis.git
 ### **Running the Backend**:
 
 **Start the Data Ingestion & ETL Process**:
-`python data_ingestion_script.py`
+`main.py`
 
 
 You should be able to check the app.log file to see the ETL work.
