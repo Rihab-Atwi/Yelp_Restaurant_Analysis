@@ -114,10 +114,13 @@ Interactive PowerBI Dashboard: A central dashboard where viewers can view:
 4. Machine Learning: Sentiment Analysis - Topic Modeling.
 
 ## Machine Learning (ML) component
-In my Yelp restaurant analysis project, I collected and preprocessed Yelp restaurant reviews. For topic modeling, I used Latent Dirichlet Allocation (LDA) without training a custom model. Sentiment analysis was done using the VADER tool from NLTK without model training.
-I evaluated these pre-trained models based on their performance in uncovering topics and assessing sentiment in the reviews. 
+**Topic Modeling with Latent Dirichlet Allocation (LDA)**<br>
+For uncovering meaningful topics within the reviews, I employed Latent Dirichlet Allocation (LDA). This unsupervised machine learning technique allows us to identify latent topics and their prevalence within the dataset. By analyzing topics, we gain valuable insights into the most frequently discussed aspects of these restaurants, helping both businesses and potential customers.
 <br><br>
-Tools:
+**Sentiment Analysis Using VADER**<br>
+To understand the sentiment expressed in the reviews, I utilized the VADER (Valence Aware Dictionary and sEntiment Reasoner) tool from the Natural Language Toolkit (NLTK). VADER is a pre-trained model for sentiment analysis that doesn't require custom training. It allowed me to assess the overall sentiment of the reviews, distinguishing between positive, negative, and neutral sentiments. This analysis provides a holistic view of customer opinions and can be a crucial tool for restaurant owners and prospective diners. 
+<br><br>
+**Tools:**
 - **SQL:** Used to create schema tables.
 - **Python:** Used to code data extraction and cleaning processes and ETL steps (Prehook, Hook, Posthook) using Python modules and libraries like pandas, requests, numpy, psycopg2, enum, etc.
 - **VaderSentiment:** Is a Python library for sentiment analysis of text data, ideal for analyzing reviews in your project, providing sentiment categorization and intensity scores.
