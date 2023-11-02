@@ -79,7 +79,7 @@
 
 | Schema Diagram |
 | ---------------|
-|![Log](./readme/db_schema.jpg) |
+|![Log](./readme/db_schema.png) |
  
 
   
